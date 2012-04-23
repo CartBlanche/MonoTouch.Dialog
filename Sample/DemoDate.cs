@@ -17,7 +17,7 @@ namespace Sample
 		
 		UIImage badgeImage;
 		
-		public void DemoDate ()	
+		public void DemoDate ()
 		{
 			if (badgeImage == null)
 				badgeImage = UIImage.FromFile ("jakub-calendar.png");
@@ -41,12 +41,12 @@ namespace Sample
 			var dates = new string [][] {
 				new string [] { "January", "1", "Hangover day" },
 				new string [] { "February", "14", "Valentine's Day" },
-				new string [] { "March", "3", "Third day of March" },
+ 				new string [] { "March", "3", "Third day of March" },
 				new string [] { "March", "31", "Prank Preparation day" },
 				new string [] { "April", "1", "Pranks" },
 			};
 			var calendarSection = new Section ("Date sample");
-			foreach (string [] date in dates){
+			foreach (string [] date in dates) {
 				calendarSection.Add (new BadgeElement (BadgeElement.MakeCalendarBadge (badgeImage, date [0], date [1]), date [2]){
 					Font = font
 				});
