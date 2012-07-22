@@ -107,9 +107,12 @@ namespace MonoTouch.Dialog
 						if ( MapView != null )
 						{
 							var ul = MapView.UserLocation.Location;
-							var gc = new MKReverseGeocoder(ul.Coordinate);
-							gc.Delegate = ReverseGeocoderDelegate;
-							gc.Start();
+							if ( ul != null ) // May be null if user has not given permission
+							{
+								var gc = new MKReverseGeocoder(ul.Coordinate);
+								gc.Delegate = ReverseGeocoderDelegate;
+								gc.Start();
+							}
 						}
 					};
 				}

@@ -648,6 +648,7 @@ namespace MonoTouch.Dialog
 		static NSString skeyvalue = new NSString ("StringElementValue");
 		public UITextAlignment Alignment = UITextAlignment.Left;
 		public string Value;
+		public UIColor TextColor = UIColor.Black;
 		
 		public StringElement (string caption) : base (caption) {}
 		
@@ -673,6 +674,7 @@ namespace MonoTouch.Dialog
 			cell.Accessory = UITableViewCellAccessory.None;
 			cell.TextLabel.Text = Caption;
 			cell.TextLabel.TextAlignment = Alignment;
+			cell.TextLabel.TextColor = TextColor;
 			
 			// The check is needed because the cell might have been recycled.
 			if (cell.DetailTextLabel != null)
