@@ -324,12 +324,18 @@ namespace MonoTouch.Dialog
 
 			public override string TitleForHeader (UITableView tableView, int section)
 			{
-				return Root.Sections [section].Caption;
+				if (section < Root.Sections.Count)
+					return Root.Sections [section].Caption;
+				else
+					return null;
 			}
 
 			public override string TitleForFooter (UITableView tableView, int section)
 			{
-				return Root.Sections [section].Footer;
+				if (section < Root.Sections.Count)
+					return Root.Sections [section].Footer;
+				else
+					return null;
 			}
 
 			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -366,30 +372,44 @@ namespace MonoTouch.Dialog
 			
 			public override UIView GetViewForHeader (UITableView tableView, int sectionIdx)
 			{
-				var section = Root.Sections [sectionIdx];
-				return section.HeaderView;
+				if (sectionIdx < Root.Sections.Count) {
+					var section = Root.Sections [sectionIdx];
+					return section.HeaderView;
+				} else
+					return null;
+
 			}
 
 			public override float GetHeightForHeader (UITableView tableView, int sectionIdx)
 			{
-				var section = Root.Sections [sectionIdx];
-				if (section.HeaderView == null)
+				if (sectionIdx < Root.Sections.Count) {
+					var section = Root.Sections [sectionIdx];
+					if (section.HeaderView == null)
+						return -1;
+					return section.HeaderView.Frame.Height;
+				} 
+				else
 					return -1;
-				return section.HeaderView.Frame.Height;
 			}
 
 			public override UIView GetViewForFooter (UITableView tableView, int sectionIdx)
 			{
-				var section = Root.Sections [sectionIdx];
-				return section.FooterView;
+				if (sectionIdx < Root.Sections.Count) {
+					var section = Root.Sections [sectionIdx];
+					return section.FooterView;
+				} else
+					return null;
 			}
 			
 			public override float GetHeightForFooter (UITableView tableView, int sectionIdx)
 			{
-				var section = Root.Sections [sectionIdx];
-				if (section.FooterView == null)
+				if (sectionIdx < Root.Sections.Count) {
+					var section = Root.Sections [sectionIdx];
+					if (section.FooterView == null)
+						return -1;
+					return section.FooterView.Frame.Height;
+				} else
 					return -1;
-				return section.FooterView.Frame.Height;
 			}
 			
 			#region Pull to Refresh support

@@ -593,7 +593,8 @@ namespace MonoTouch.Dialog
 			}
 
 			public bool Autorotate { get; set; }
-			
+
+			[Obsolete]
 			public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 			{
 				return Autorotate;
@@ -1422,6 +1423,7 @@ namespace MonoTouch.Dialog
 				}
 			}
 		}
+
 		UITextAlignment textalignment = UITextAlignment.Left;
 		UIKeyboardType keyboardType = UIKeyboardType.Default;
 		UIReturnKeyType? returnKeyType = null;
