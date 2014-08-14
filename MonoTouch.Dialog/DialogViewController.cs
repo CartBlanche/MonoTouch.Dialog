@@ -294,7 +294,12 @@ namespace MonoTouch.Dialog
 			protected DialogViewController Container;
 			protected RootElement Root;
 			bool checkForRefresh;
-			
+
+			public Source (IntPtr handle) : base(handle)
+			{
+				this.Root = new RootElement ("");
+			}
+
 			public Source (DialogViewController container)
 			{
 				this.Container = container;
