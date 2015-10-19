@@ -8,7 +8,6 @@ using System.Threading;
 using CoreFoundation;
 using Foundation;
 using UIKit;
-using CoreGraphics;
 
 namespace MonoTouch.Dialog
 {

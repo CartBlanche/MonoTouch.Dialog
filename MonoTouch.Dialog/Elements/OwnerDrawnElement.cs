@@ -2,7 +2,6 @@ using System;
 using CoreGraphics;
 using UIKit;
 using CoreFoundation;
-using CoreGraphics;
 using Foundation;
 
 namespace MonoTouch.Dialog

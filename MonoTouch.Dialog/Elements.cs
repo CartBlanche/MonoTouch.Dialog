@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 using CoreAnimation;
 using MonoTouch.Dialog.Utilities;
@@ -449,13 +448,13 @@ namespace MonoTouch.Dialog
 		public float Value;
 		public float MinValue, MaxValue;
 		static NSString skey = new NSString ("FloatElement");
-		UIImage Left, Right;
+		//UIImage Left, Right;
 		UISlider slider;
 		
 		public FloatElement (UIImage left, UIImage right, float value) : base (null)
 		{
-			Left = left;
-			Right = right;
+			//Left = left;
+			//Right = right;
 			MinValue = 0;
 			MaxValue = 1;
 			Value = value;
@@ -1298,8 +1297,8 @@ namespace MonoTouch.Dialog
 				if (cell == null)
 					useRect = rect;
 				else
-					rect = cell.Frame;
-				popover.PresentFromRect (rect, dvc.View, UIPopoverArrowDirection.Any, true);
+					useRect = cell.Frame;
+				popover.PresentFromRect (useRect, dvc.View, UIPopoverArrowDirection.Any, true);
 				break;
 				
 			default:

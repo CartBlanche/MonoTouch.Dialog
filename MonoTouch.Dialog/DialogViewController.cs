@@ -14,7 +14,6 @@ using UIKit;
 using CoreGraphics;
 using System.Collections.Generic;
 using Foundation;
-using CoreGraphics;
 
 namespace MonoTouch.Dialog
 {

@@ -1,6 +1,5 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
 namespace MonoTouch.Dialog
 {
 	public static class GraphicsUtil {

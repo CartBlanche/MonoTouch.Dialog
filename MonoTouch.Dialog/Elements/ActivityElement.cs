@@ -1,7 +1,6 @@
 using System;
 using CoreGraphics;
 using UIKit;
-using CoreGraphics;
 
 namespace MonoTouch.Dialog
 {
