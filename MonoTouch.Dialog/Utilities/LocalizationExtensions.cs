@@ -19,7 +19,7 @@
 // THE SOFTWARE.
 //
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MonoTouch.Dialog
 {

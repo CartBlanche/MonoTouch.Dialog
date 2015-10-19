@@ -28,9 +28,9 @@ using System.Net;
 using System.Text;
 using System.Threading;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using MonoTouch.Dialog.Utilities;
 using System.Security.Cryptography;
 
@@ -125,7 +125,7 @@ namespace MonoTouch.Dialog.Utilities
 		static int sizer (UIImage img)
 		{
 			var cg = img.CGImage;
-			return cg.BytesPerRow * cg.Height;
+			return (int)(cg.BytesPerRow * cg.Height);
 		}
 		
 		/// <summary>
@@ -213,7 +213,7 @@ namespace MonoTouch.Dialog.Utilities
 
 			string picfile = uri.IsFile ? uri.LocalPath : PicDir + md5 (uri.AbsoluteUri);
 			if (File.Exists (picfile)){
-				ret = UIImage.FromFileUncached (picfile);
+				ret = UIImage.FromFile (picfile);
 				if (ret != null){
 					lock (cache)
 						cache [uri] = ret;

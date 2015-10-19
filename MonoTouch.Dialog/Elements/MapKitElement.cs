@@ -1,8 +1,9 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreGraphics;
 
 namespace MonoTouch.Dialog
 {
@@ -10,14 +11,14 @@ namespace MonoTouch.Dialog
 	{
 		static NSString mkey = new NSString ("MapKitElement");
 		public MKMapView MapView = null;
-		private MKAnnotation[] mkAnnotationObjects;
+		private IMKAnnotation[] mkAnnotationObjects;
 		
 		EventHandler<MKMapViewAccessoryTappedEventArgs> mkHandleMapViewCalloutAccessoryControlTapped;
 		EventHandler<MKAnnotationViewEventArgs> mkHandleMapViewDidSelectAnnotationView;
-		public delegate MKAnnotationView HandleGetViewForAnnotation(MKMapView mapView, NSObject annotation);
+		public delegate MKAnnotationView HandleGetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation);
 		HandleGetViewForAnnotation mkHandleGetViewForAnnotation;
 		
-		public MapKitElement ( string aCaption, MKAnnotation[] aMKAnnotationObjects, HandleGetViewForAnnotation aHandleGetViewForAnnotation, EventHandler<MKMapViewAccessoryTappedEventArgs> aHandleMapViewCalloutAccessoryControlTapped, EventHandler<MKAnnotationViewEventArgs> aHandleMapViewDidSelectAnnotationView ) : base(aCaption)
+		public MapKitElement ( string aCaption, IMKAnnotation[] aMKAnnotationObjects, HandleGetViewForAnnotation aHandleGetViewForAnnotation, EventHandler<MKMapViewAccessoryTappedEventArgs> aHandleMapViewCalloutAccessoryControlTapped, EventHandler<MKAnnotationViewEventArgs> aHandleMapViewDidSelectAnnotationView ) : base(aCaption)
 		{
 			mkAnnotationObjects = aMKAnnotationObjects;
 			mkHandleGetViewForAnnotation = aHandleGetViewForAnnotation;
@@ -64,10 +65,10 @@ namespace MonoTouch.Dialog
 				};
 			}
 			
-			MapView.Frame = new System.Drawing.RectangleF(UIScreen.MainScreen.ApplicationFrame.Left, UIScreen.MainScreen.ApplicationFrame.Top - 20, UIScreen.MainScreen.ApplicationFrame.Right, UIScreen.MainScreen.ApplicationFrame.Bottom - 20);
+			MapView.Frame = new CGRect(UIScreen.MainScreen.ApplicationFrame.Left, UIScreen.MainScreen.ApplicationFrame.Top - 20, UIScreen.MainScreen.ApplicationFrame.Right, UIScreen.MainScreen.ApplicationFrame.Bottom - 20);
 			if (mkHandleGetViewForAnnotation != null )
 			{
-				MapView.GetViewForAnnotation = delegate(MKMapView mapView, NSObject annotation) {
+				MapView.GetViewForAnnotation = delegate(MKMapView mapView, IMKAnnotation annotation) {
 					return mkHandleGetViewForAnnotation(mapView, annotation);
 				};
 			}
@@ -84,7 +85,7 @@ namespace MonoTouch.Dialog
 			
 			if ( mkAnnotationObjects != null )
 			{
-				MapView.AddAnnotation(mkAnnotationObjects);
+				MapView.AddAnnotations(mkAnnotationObjects);
 			}
 			
 			MapView.WillStartLoadingMap += delegate(object sender, EventArgs e) {

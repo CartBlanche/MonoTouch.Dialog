@@ -11,10 +11,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
+using Foundation;
 
 namespace MonoTouch.Dialog
 {	
@@ -34,7 +34,7 @@ namespace MonoTouch.Dialog
 	/// </remarks>
 	public class BadgeElement : Element, IElementSizing {
 		static NSString ckey = new NSString ("badgeKey");
-		public event NSAction Tapped;
+		public event Action Tapped;
 		public UILineBreakMode LineBreakMode = UILineBreakMode.TailTruncation;
 		public UIViewContentMode ContentMode = UIViewContentMode.Left;
 		public int Lines = 1;
@@ -47,7 +47,7 @@ namespace MonoTouch.Dialog
 		{
 		}
 
-		public BadgeElement (UIImage badgeImage, string cellText, NSAction tapped) : base (cellText)
+		public BadgeElement (UIImage badgeImage, string cellText, Action tapped) : base (cellText)
 		{
 			if (badgeImage == null)
 				throw new ArgumentNullException ("badgeImage");
@@ -96,13 +96,13 @@ namespace MonoTouch.Dialog
 			base.Dispose (disposing);
 		}
 
-		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		public nfloat GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
-			SizeF size = new SizeF (tableView.Bounds.Width - 40, float.MaxValue);
-			float height = tableView.StringSize (Caption, Font, size, LineBreakMode).Height + 10;
+			CGSize size = new CGSize (tableView.Bounds.Width - 40, float.MaxValue);
+			nfloat height = Caption.StringSize (Font, size, LineBreakMode).Height + 10;
 			
 			// Image is 57 pixels tall, add some padding
-			return Math.Max (height, 63);
+			return (nfloat)Math.Max (height, 63);
 		}
 
 		public override void Selected (DialogViewController dvc, UITableView tableView, NSIndexPath path)
@@ -118,7 +118,7 @@ namespace MonoTouch.Dialog
 				using (var context = new CGBitmapContext (IntPtr.Zero, 57, 57, 8, 57*4, cs, CGImageAlphaInfo.PremultipliedLast)){
 					//context.ScaleCTM (0.5f, -1);
 					context.TranslateCTM (0, 0);
-					context.DrawImage (new RectangleF (0, 0, 57, 57), template.CGImage);
+					context.DrawImage (new CGRect (0, 0, 57, 57), template.CGImage);
 					context.SetFillColor (1, 1, 1, 1);
 					
 					context.SelectFont ("Helvetica", 10f, CGTextEncoding.MacRoman);

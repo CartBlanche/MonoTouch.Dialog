@@ -10,13 +10,14 @@
 //
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.IO;
 using System.Json;
 using System.Net;
 using System.Reflection;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MonoTouch.Dialog {
 	
@@ -32,7 +33,7 @@ namespace MonoTouch.Dialog {
 		{
 			var cvb = cell.ContentView.Bounds;
 
-			var spinner = new UIActivityIndicatorView (new RectangleF (cvb.Width-CSIZE/2, (cvb.Height-CSIZE)/2, CSIZE, CSIZE)) {
+			var spinner = new UIActivityIndicatorView (new CGRect (cvb.Width-CSIZE/2, (cvb.Height-CSIZE)/2, CSIZE, CSIZE)) {
 				Tag = SPINNER_TAG,
 				ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray,
 			};
@@ -459,10 +460,10 @@ namespace MonoTouch.Dialog {
 		{
 			int q = kvalue.LastIndexOf ("-");
 			string fname = kvalue;
-			float fsize = 0;
+			nfloat fsize = 0;
 			
 			if (q != -1) {
-				float.TryParse (kvalue.Substring (q+1), out fsize);
+				nfloat.TryParse (kvalue.Substring (q+1), out fsize);
 				fname = kvalue.Substring (0, q);
 			}
 			if (fsize <= 0)
@@ -511,8 +512,8 @@ namespace MonoTouch.Dialog {
 			string value = null;
 			string caption = value;
 			string background = null;
-			NSAction ontap = null;
-			NSAction onaccessorytap = null;
+			Action ontap = null;
+			Action onaccessorytap = null;
 			int? lines = null;
 			UITableViewCellAccessory? accessory = null;
 			UILineBreakMode? linebreakmode = null;
@@ -542,7 +543,7 @@ namespace MonoTouch.Dialog {
 					int p = sontap.LastIndexOf ('.');
 					if (p == -1)
 						break;
-					NSAction d = delegate {
+					Action d = delegate {
 						string cname = sontap.Substring (0, p);
 						string mname = sontap.Substring (p+1);
 						foreach (var a in AppDomain.CurrentDomain.GetAssemblies ()){

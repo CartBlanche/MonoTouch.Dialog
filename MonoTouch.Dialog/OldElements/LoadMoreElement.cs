@@ -3,11 +3,12 @@
 // sample code for new elements. 
 //
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Threading;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreFoundation;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MonoTouch.Dialog
 {
@@ -125,7 +126,7 @@ namespace MonoTouch.Dialog
 			}
 		}
 		
-		SizeF GetTextSize (string text)
+		CGSize GetTextSize (string text)
 		{
 			return new NSString (text).StringSize (Font, UIScreen.MainScreen.Bounds.Width, UILineBreakMode.TailTruncation);
 		}
@@ -133,7 +134,7 @@ namespace MonoTouch.Dialog
 		const int pad = 10;
 		const int isize = 20;
 		
-		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		public nfloat GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
 			return Height ?? GetTextSize (Animating ? LoadingCaption : NormalCaption).Height + 2*pad;
 		}
@@ -145,9 +146,9 @@ namespace MonoTouch.Dialog
 			var size = GetTextSize (Animating ? LoadingCaption : NormalCaption);
 			
 			if (!activityIndicator.Hidden)
-				activityIndicator.Frame = new RectangleF ((sbounds.Width-size.Width)/2-isize*2, pad, isize, isize);
+				activityIndicator.Frame = new CGRect ((sbounds.Width-size.Width)/2-isize*2, pad, isize, isize);
 
-			caption.Frame = new RectangleF (10, pad, sbounds.Width-20, size.Height);
+			caption.Frame = new CGRect (10, pad, sbounds.Width-20, size.Height);
 		}
 		
 		public UITextAlignment Alignment { 

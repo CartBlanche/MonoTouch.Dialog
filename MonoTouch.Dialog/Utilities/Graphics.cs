@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using CoreGraphics;
+using CoreGraphics;
 namespace MonoTouch.Dialog
 {
 	public static class GraphicsUtil {
@@ -17,14 +17,14 @@ namespace MonoTouch.Dialog
 		/// <returns>
 		/// A <see cref="CGPath"/> that can be used to stroke the rounded rectangle
 		/// </returns>
-		public static CGPath MakeRoundedRectPath (RectangleF rect, float radius)
+		public static CGPath MakeRoundedRectPath (CGRect rect, nfloat radius)
 		{
-			float minx = rect.Left;
-			float midx = rect.Left + (rect.Width)/2;
-			float maxx = rect.Right;
-			float miny = rect.Top;
-			float midy = rect.Y+rect.Size.Height/2;
-			float maxy = rect.Bottom;
+			nfloat minx = rect.Left;
+			nfloat midx = rect.Left + (rect.Width)/2;
+			nfloat maxx = rect.Right;
+			nfloat miny = rect.Top;
+			nfloat midy = rect.Y+rect.Size.Height/2;
+			nfloat maxy = rect.Bottom;
 
 			var path = new CGPath ();
 			path.MoveToPoint (minx, midy);
@@ -37,7 +37,7 @@ namespace MonoTouch.Dialog
 			return path;
         }
 		
-		public static void FillRoundedRect (CGContext ctx, RectangleF rect, float radius)
+		public static void FillRoundedRect (CGContext ctx, CGRect rect, nfloat radius)
 		{
 				var p = GraphicsUtil.MakeRoundedRectPath (rect, radius);
 				ctx.AddPath (p);
