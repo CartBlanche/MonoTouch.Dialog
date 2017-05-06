@@ -104,7 +104,8 @@ namespace MonoTouch.Dialog {
 							Console.WriteLine (ee);
 						}
 					}
-					var alert = new UIAlertView ("Error", "Unable to download data", null, "Ok");
+					IUIAlertViewDelegate avd = null;
+					var alert = new UIAlertView ("Error", "Unable to download data", avd, "OK", null);
 					alert.Show ();
 				});
 			};

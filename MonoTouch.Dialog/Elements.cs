@@ -16,7 +16,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UIKit;
 using CoreGraphics;
 using Foundation;
@@ -599,7 +598,6 @@ namespace MonoTouch.Dialog
 				return Autorotate;
 			}
 
-			[Obsolete]
 			public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 			{
 				return Autorotate;
@@ -731,7 +729,6 @@ namespace MonoTouch.Dialog
 		public event Action AccessoryTapped;
 		public UIFont Font;
 		public UIFont SubtitleFont;
-		public UIColor TextColor;
 		public UILineBreakMode LineBreakMode = UILineBreakMode.WordWrap;
 		public int Lines = 0;
 		public UITableViewCellAccessory Accessory = UITableViewCellAccessory.None;
